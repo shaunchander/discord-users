@@ -1,0 +1,11 @@
+type DiscordUser {
+  email: String! @unique
+  discordTag: String!
+  avatarURL: String!
+  description: String!
+}
+
+type Query {
+  getUserByEmail(email: String!): DiscordUser
+  getUsers: [DiscordUser]!
+}
