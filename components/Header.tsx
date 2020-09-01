@@ -21,9 +21,30 @@ const Header = () => {
         <div>
           <h3>Discord Users</h3>
           <p>
-            Created with <a href="https://nextjs.org">NextJS</a>,{' '}
-            <a href="https://fauna.com">FaunaDB</a>, and{' '}
-            <a href="https://milligram.io/">Milligram</a>
+            Created with{' '}
+            <a
+              href="https://nextjs.org"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              NextJS
+            </a>
+            ,{' '}
+            <a
+              href="https://fauna.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              FaunaDB
+            </a>
+            , and{' '}
+            <a
+              href="https://milligram.io/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Milligram
+            </a>
           </p>
         </div>
         <div>
