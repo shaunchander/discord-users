@@ -35,6 +35,18 @@ const User = ({ discordTag, description, avatarURL, slug }: Props) => {
       <Link href={`/profile/${slug}`}>
         <a className="button">Visit Profile</a>
       </Link>
+
+      <style jsx>{`
+        .column-25 {
+          max-width: 100% !important;
+        }
+
+        @media screen and (min-width: 1024px) {
+          .column-25 {
+            max-width: 25%;
+          }
+        }
+      `}</style>
     </div>
   );
 };
