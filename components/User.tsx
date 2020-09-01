@@ -15,23 +15,27 @@ const User = ({ discordTag, description, avatarURL, slug }: Props) => {
         boxShadow: '0px 5px 10px rgba(0, 0, 0, .15)',
         borderRadius: 5,
         padding: 24,
+        display: 'flex',
+        flexDirection: 'column',
       }}
     >
-      <img
-        src={avatarURL}
-        alt=""
-        style={{
-          width: 128,
-          height: 128,
-          borderRadius: '100%',
-          objectFit: 'cover',
-        }}
-        draggable={false}
-      />
-      <br />
-      <br />
-      <h3>{discordTag}</h3>
-      <p>{description ? description : <em>No description provided.</em>}</p>
+      <div style={{ flexGrow: 1 }}>
+        <img
+          src={avatarURL}
+          alt=""
+          style={{
+            width: 128,
+            height: 128,
+            borderRadius: '100%',
+            objectFit: 'cover',
+          }}
+          draggable={false}
+        />
+        <br />
+        <br />
+        <h3>{discordTag}</h3>
+        <p>{description ? description : <em>No description provided.</em>}</p>
+      </div>
       <Link href={`/profile/${slug}`}>
         <a className="button">Visit Profile</a>
       </Link>
