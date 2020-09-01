@@ -13,6 +13,7 @@ const UserProfile = () => {
   const [copyProfileURL, setCopyProfileURL] = useState(false);
   const [editProfile, setEditProfile] = useState(false);
   const [profileDescription, setProfileDescription] = useState('');
+  const [profileDescriptionError, setProfileDescriptionError] = useState(false);
 
   // Refs
   const input = useRef<HTMLInputElement>(null);
@@ -96,26 +97,43 @@ const UserProfile = () => {
               {data.description && !editProfile ? (
                 data.description
               ) : editProfile ? (
-                <input
-                  ref={input}
-                  onBlur={async () => {
-                    setEditProfile(false);
-                    updateDescription();
-                    mutate({ ...data, description: profileDescription }, false);
+                <>
+                  <input
+                    ref={input}
+                    onBlur={async () => {
+                      if (profileDescription.length > 50) {
+                        return setProfileDescriptionError(true);
+                      }
+                      setEditProfile(false);
+                      updateDescription();
+                      mutate(
+                        { ...data, description: profileDescription },
+                        false
+                      );
                     }}
                     onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                         setEditProfile(false);
-                         updateDescription();
-                         mutate(
-                           { ...data, description: profileDescription },
-                           false
-                         );
+                      if (e.key === 'Enter') {
+                        if (profileDescription.length > 50) {
+                          return setProfileDescriptionError(true);
+                        }
+
+                        setEditProfile(false);
+                        updateDescription();
+                        mutate(
+                          { ...data, description: profileDescription },
+                          false
+                        );
                       }
                     }}
-                  value={profileDescription}
-                  onChange={(e) => setProfileDescription(e.target.value)}
-                ></input>
+                    value={profileDescription}
+                    onChange={(e) => setProfileDescription(e.target.value)}
+                  ></input>
+                  {profileDescriptionError && (
+                    <p>
+                      Please enter a description that's less than 50 characters.
+                    </p>
+                  )}
+                </>
               ) : (
                 <em>No description provided.</em>
               )}

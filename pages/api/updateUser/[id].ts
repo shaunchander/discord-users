@@ -9,7 +9,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   // Reject malformed requests
   const { description } = JSON.parse(req.body);
   const { id } = req.query;
-  if (!description) return res.status(400).send('Bad request.');
+  if (typeof description !== 'string')
+    return res.status(400).send('Bad request.');
   if (!id) return res.status(400).send('Bad request.');
 
   try {
@@ -20,7 +21,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(400).send('Bad request.');
     await Client.request(
       gql`
-        mutation UpdateUserDescription($description: String!, $id: ID!) {
+        mutation UpdateUserDescription($description: String, $id: ID!) {
           partialUpdateDiscordUser(
             id: $id
             data: { description: $description }
