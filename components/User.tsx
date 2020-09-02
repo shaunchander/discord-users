@@ -24,10 +24,12 @@ const User = ({ discordTag, description, avatarURL, slug }: Props) => {
           src={avatarURL}
           alt=""
           style={{
+            display: 'block',
             width: 128,
             height: 128,
             borderRadius: '100%',
             objectFit: 'cover',
+            margin: 'auto',
           }}
           draggable={false}
         />
